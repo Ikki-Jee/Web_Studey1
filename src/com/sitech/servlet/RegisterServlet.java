@@ -23,7 +23,7 @@ public class RegisterServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		String email = request.getParameter("emil");
+		String email = request.getParameter("emailaddress");
 		UserDao userDao = new UserDaoImpl();
 		boolean flag = userDao.checkUsername(username);
 		if (!flag) {

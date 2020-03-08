@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sitech.bean.User;
 import com.sitech.dao.UserDao;
@@ -27,7 +28,9 @@ public class LoginServlet extends HttpServlet {
 		UserDao userDao = new UserDaoImpl();
 		User user = userDao.checkUserNameAndPassword(username, password);
 		if (null!=user) {
-			response.sendRedirect("pages/test.jsp");
+			HttpSession session = request.getSession();
+			session.setAttribute("user", user);
+			response.sendRedirect("GetUsersServlet");
 		}
 		else {
 			request.setAttribute("msg", "用户名或密码不正确！");

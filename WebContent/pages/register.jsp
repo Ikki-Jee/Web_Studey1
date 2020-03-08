@@ -22,10 +22,7 @@
 <script type="text/javascript" src="script/jquery-1.7.2.js"></script>
 <script type="text/javascript">
 $(function(){
-	$(".input1").focus(function(){		
-		$("#msgspan").text("");
-	});
-	
+
 	$("#sub").click(function(){		
 		var username = $("#username").val();
 		var password = $("#password").val();
@@ -62,27 +59,27 @@ $(function(){
 
 		var url = "CheckUsernameServlet";
 		var params = "username="+username;
-		$.post(url,params)
+		$.post(url,params,function(res){
+			$("#msgspan").html(res);
+
+		},"text")
 
 	});
-}); 
-</script>
-<script type="text/javascript">
-	$(function(){
-//给按钮绑定单击事件
-		$("#btnId").click(function(){
-			alert($)
-		});
+	$(".input1").focus(function(){		
+		$("#msgspan").text("");
 	});
+
+	
+}); 
 </script>
 </head>
 <body>
 <div>
-	<button id = "btnId">通过$.Ajax</button><h1 align="center">欢迎注册</h1><br>
+	<h1 align="center">欢迎注册</h1><br>
 	
 	<form action="RegisterServlet" method="post" align="center">
-		用户名称：<input type="text" name="username" id="username" class="input1">	
-		<br>
+		用户名称：<input type="text" name="username" id="username" class="input1"><br>	
+		<span id="msgspan"></span>
 		<br>
 		用户密码：<input type="password" name="password" id="password" class="input1">
 		<br>
@@ -92,7 +89,7 @@ $(function(){
 		<br>
 		邮箱地址：<input type="text" name="emailaddress" id="emailaddress" class="input1">		
 		<br>
-		<span style="color: red" id="msgspan">${msg}</span>
+		
 		<br>
 		<br>
 		<input type="submit" value="注册" id="sub">

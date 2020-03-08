@@ -1,5 +1,7 @@
 package com.sitech.dao.impl;
 
+import java.util.List;
+
 import com.sitech.bean.User;
 import com.sitech.dao.BasicDao;
 import com.sitech.dao.UserDao;
@@ -31,6 +33,14 @@ public class UserDaoImpl implements UserDao{
 		String sql = "insert into users VALUES (null,?,?,?)";		
 		basicDao.update(sql,username, password,email);
 
+	}
+
+	@Override
+	public List<User> getUsers() {
+		// TODO Auto-generated method stub
+		String sql = "select id,username,password,email from users";
+		List<User> beanList = basicDao.getBeanList(User.class, sql);
+		return beanList;
 	}
 
 	
