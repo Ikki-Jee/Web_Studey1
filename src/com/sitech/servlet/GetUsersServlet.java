@@ -23,13 +23,14 @@ public class GetUsersServlet extends HttpServlet {
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		UserDao userDao = new UserDaoImpl();
 		List<User> users = userDao.getUsers();
 //		request.setAttribute("users", users);
 //		request.getRequestDispatcher("pages/test.jsp").forward(request, response);
 		HttpSession session = request.getSession();
 		session.setAttribute("users", users);
-		response.sendRedirect("pages/test.jsp");
+		request.getRequestDispatcher("pages/test.jsp").forward(request, response);;
 	}
 
 	/**

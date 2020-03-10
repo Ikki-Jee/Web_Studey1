@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebFilter;
 /**
  * Servlet Filter implementation class HellowFilter
  */
-@WebFilter("/HellowFilter")
+@WebFilter(filterName = "HellowFilter",urlPatterns = "/pages/test2.jsp")
 public class HellowFilter implements Filter {
 
     /**
@@ -35,9 +35,10 @@ public class HellowFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
-		System.out.println("不让过");
+		System.out.println("1让过");
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
+		System.out.println("5过吧");
 	}
 
 	/**

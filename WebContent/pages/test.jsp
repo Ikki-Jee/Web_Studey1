@@ -13,9 +13,10 @@
 
 </head>
 <body>
-	<button onclick="window.location.href='LogoutServlet'">注销</button>
-	<h1>欢迎<span style="color:red">${sessionScope.user.username}</span>登录</h1>
-	<br>
+	<button  onclick="window.location.href='LogoutServlet'">注销</button>
+<center>
+	<h1>欢迎<span style="color:red">${sessionScope.user.username}</span>登录，当前在线<span style="color:red">${applicationScope.count}</span>人</h1>
+	<br> 
 	<c:if test="${empty sessionScope.users }"><h2>没有任何用户</h2></c:if>
 	<br>
 	<c:if test="${!empty sessionScope.users }">
@@ -40,6 +41,6 @@
 	</c:forEach>
 	</table>
 </c:if>	
-
+</center> 
 </body>
 </html>

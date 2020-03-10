@@ -2,7 +2,35 @@ package com.sitech.bean;
 
 import java.io.Serializable;
 
-public class User implements Serializable{
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionBindingEvent;
+import javax.servlet.http.HttpSessionBindingListener;
+
+public class User implements HttpSessionBindingListener,Serializable{
+	@Override
+	public void valueBound(HttpSessionBindingEvent event) {
+		// TODO Auto-generated method stub
+		HttpSession session = event.getSession();
+		ServletContext application = session.getServletContext();
+		
+		Integer countInteger =(Integer)application.getAttribute("count");
+		if(countInteger == null) {
+			application.setAttribute("count", 1);
+			
+		}else {
+			application.setAttribute("count", countInteger+1);
+		}
+	}
+	@Override
+	public void valueUnbound(HttpSessionBindingEvent event) {
+		// TODO Auto-generated method stub
+		HttpSession session = event.getSession();
+		ServletContext application = session.getServletContext();
+		Integer countInteger =(Integer)application.getAttribute("count");
+		application.setAttribute("count", countInteger-1);
+	}
+	
 	private int id;
 	private String username;
 	private String password;

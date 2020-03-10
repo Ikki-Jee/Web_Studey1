@@ -8,5 +8,6 @@
 </head>
 <body>
 	<h3>过滤器没拦住我</h3>
+	<a href="/Web_jQuery/pages/login.jsp">主页</a>
 </body>
 </html>
